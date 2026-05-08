@@ -1,0 +1,68 @@
+/*
+ * CaptchaLa admin settings page.
+ * Brand single-blue (#3B82F6), SaaS-stable typography. No purple, no neon.
+ */
+
+.captchala-settings { max-width: 920px; }
+
+.captchala-settings h1 {
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+}
+.captchala-settings .description {
+    color: #4b5563;
+    margin: 0 0 24px;
+}
+
+.captchala-settings .form-table th {
+    width: 240px;
+}
+
+.captchala-settings input[type=text],
+.captchala-settings input[type=password],
+.captchala-settings select {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+    background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+}
+.captchala-settings input[type=text]:focus,
+.captchala-settings input[type=password]:focus,
+.captchala-settings select:focus {
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,.18);
+    outline: none;
+}
+
+#captchala-test-connection {
+    margin-right: 12px;
+    background: #3B82F6;
+    border-color: #3B82F6;
+    color: #fff;
+    box-shadow: none;
+}
+#captchala-test-connection:hover {
+    background: #2563EB;
+    border-color: #2563EB;
+}
+#captchala-test-result {
+    font-size: 13px;
+    color: #4b5563;
+}
+#captchala-test-result.is-ok    { color: #047857; }
+#captchala-test-result.is-error { color: #b91c1c; }
+
+.captchala-wizard-banner {
+    border-left-color: #3B82F6 !important;
+    padding: 12px 18px;
+}
+.captchala-wizard-banner h3 {
+    margin: 0 0 6px;
+    color: #111827;
+    font-weight: 600;
+}
+.captchala-wizard-banner p { color: #374151; }
+.captchala-wizard-banner .button-link { margin-left: 8px; color: #6b7280; }

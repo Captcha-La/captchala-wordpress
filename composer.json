@@ -1,0 +1,33 @@
+{
+    "name": "captchala/wordpress",
+    "description": "CaptchaLa WordPress plugin — privacy-first CAPTCHA + anti-spam, smart CAPTCHA + anti-spam.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://captcha.la/",
+    "support": {
+        "email": "supply@captcha.la",
+        "issues": "https://wordpress.org/support/plugin/captchala"
+    },
+    "authors": [
+        {
+            "name": "CaptchaLa",
+            "email": "supply@captcha.la",
+            "homepage": "https://captcha.la/"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "captchala/captchala-php": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Captchala\\Wp\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
