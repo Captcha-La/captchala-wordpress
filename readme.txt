@@ -12,6 +12,8 @@ Smart privacy-first CAPTCHA for WordPress, WooCommerce, and 14+ form plugins. Ma
 
 == Description ==
 
+**Homepage:** [https://captcha.la/](https://captcha.la/) · **Dashboard:** [https://dash.captcha.la/](https://dash.captcha.la/) · **Pricing:** [https://captcha.la/pricing](https://captcha.la/pricing)
+
 **CaptchaLa** is a privacy-first CAPTCHA and anti-spam service. This plugin is the official WordPress integration — it ships built-in protection for WordPress core forms, WooCommerce, and the most popular third-party form plugins, with one mandatory mode: server-issued tokens that can't be replayed.
 
 = Why CaptchaLa? =
