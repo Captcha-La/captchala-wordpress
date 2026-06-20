@@ -40,11 +40,15 @@ final class BuddyPress extends AbstractIntegration {
 
 	public function validate_submit(): void {
 		$result = $this->validate();
-		if ( ! $result->isValid() ) {
-			global $bp;
-			if ( isset( $bp->signup->errors ) && is_array( $bp->signup->errors ) ) {
-				$bp->signup->errors['captchala'] = $this->plugin->error_message( $result->getError() );
-			}
+		if ( $result->isValid() || ! function_exists( 'buddypress' ) ) {
+			return;
+		}
+		// Use BuddyPress's own accessor instead of the bare `global $bp`
+		// — wordpress.org's plugin checker flags non-prefixed globals, and
+		// buddypress() returns the same singleton anyway.
+		$captchala_bp = buddypress();
+		if ( isset( $captchala_bp->signup->errors ) && is_array( $captchala_bp->signup->errors ) ) {
+			$captchala_bp->signup->errors['captchala'] = $this->plugin->error_message( $result->getError() );
 		}
 	}
 }

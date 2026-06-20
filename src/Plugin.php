@@ -57,6 +57,8 @@ final class Plugin {
 	public const AJAX_REFRESH_TOKEN    = 'captchala_refresh_token';
 	public const HIDDEN_INPUT_NAME     = 'captchala_token';
 	public const TEXT_DOMAIN           = 'captchala';
+	public const SCRIPT_HANDLE_LOADER  = 'captchala-loader';
+	public const STYLE_HANDLE_LOGIN    = 'captchala-login';
 
 	/**
 	 * @var Plugin|null
@@ -373,12 +375,29 @@ final class Plugin {
 			],
 			$extra
 		);
-		return Widget::renderHtml(
+		// Pull the widget apart so the JS pieces can ride WordPress's own
+		// enqueue pipeline (wp_enqueue_script + wp_add_inline_script). The
+		// integration's print_widget() echoes only the safe HTML markup.
+		// Required by wordpress.org's "use wp_enqueue commands" review rule.
+		$parts = Widget::renderParts(
 			(string) $this->get_setting( 'app_key', '' ),
 			$this->server_token( $action ),
 			$action,
 			$opts
 		);
+
+		// Register loader once (wp_register_script is idempotent by handle).
+		// in_footer=true so the boot script printed via wp_add_inline_script
+		// has the loader available when it executes. The 5th-arg array form
+		// (with 'strategy' => 'defer') is WP 6.3+; we accept the bool form
+		// fallback for compatibility down to 6.0.
+		if ( ! wp_script_is( self::SCRIPT_HANDLE_LOADER, 'registered' ) ) {
+			wp_register_script( self::SCRIPT_HANDLE_LOADER, $parts['loader_url'], array(), null, true );
+		}
+		wp_enqueue_script( self::SCRIPT_HANDLE_LOADER );
+		wp_add_inline_script( self::SCRIPT_HANDLE_LOADER, $parts['inline_script'], 'after' );
+
+		return $parts['markup'];
 	}
 
 	/**

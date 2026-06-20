@@ -35,27 +35,74 @@ abstract class AbstractIntegration implements IntegrationInterface {
 	abstract protected function action(): string;
 
 	/**
-	 * Render the canonical CaptchaLa widget for this integration.
+	 * Render the canonical CaptchaLa widget for this integration, escaped
+	 * through wp_kses with our data-* allow-list so the markup is safe at
+	 * the output boundary.
 	 *
-	 * @param array<string,mixed> $extra Forwarded to Widget::renderHtml.
+	 * Use this whenever the widget HTML is *returned* into a WordPress
+	 * filter (comment form, Woo block actions, CF7 form body, …) — WP will
+	 * echo the filter result without escaping, so the escaping has to be
+	 * baked into the returned string itself.
+	 *
+	 * The rendered fragment is just a `<div data-*>` plus a hidden
+	 * `<input>` — the SDK's loader.js and per-widget bootstrap are enqueued
+	 * separately via wp_enqueue_script / wp_add_inline_script in
+	 * Plugin::render_widget(), so there is never any JS in this markup.
+	 *
+	 * @param array<string,mixed> $extra Forwarded to Widget::renderParts.
 	 */
 	protected function render( array $extra = [] ): string {
-		return $this->plugin->render_widget( $this->action(), $extra );
+		return wp_kses(
+			$this->plugin->render_widget( $this->action(), $extra ),
+			self::widget_allowed_tags()
+		);
 	}
 
 	/**
-	 * Echo the canonical CaptchaLa widget HTML. The output is constructed
-	 * entirely from a fixed template inside the SDK's Widget::renderHtml —
-	 * attribute values are escaped with esc_attr at construction time and
-	 * the inline <script> body is a hardcoded string with no user-input
-	 * substitution. There is no path through this output that could be
-	 * controlled by a request parameter.
+	 * Echo the widget markup (already wp_kses-escaped by render()). Used by
+	 * integrations that hook an `action` (echo context) rather than a
+	 * `filter` (return context).
 	 *
-	 * @param array<string,mixed> $extra Forwarded to Widget::renderHtml.
+	 * @param array<string,mixed> $extra Forwarded to Widget::renderParts.
 	 */
 	protected function print_widget( array $extra = [] ): void {
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- See docblock above; SDK widget HTML is escape-safe by construction.
-		echo $this->render( $extra );
+		// render() already ran the markup through wp_kses with our
+		// allow-list, so it is safe to echo here. phpcs can't follow the
+		// escaping across the helper boundary, hence the annotation.
+		echo $this->render( $extra ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped via wp_kses in render().
+	}
+
+	/**
+	 * Allow-list of tags + attributes wp_kses() needs to keep the widget
+	 * markup intact. All data-* attrs are explicitly enumerated because
+	 * wp_kses strips unknown attributes by default.
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
+	private static function widget_allowed_tags(): array {
+		return array(
+			'div'   => array(
+				'id'                  => true,
+				'class'               => true,
+				'style'               => true,
+				'data-captchala'      => true,
+				'data-app-key'        => true,
+				'data-server-token'   => true,
+				'data-action'         => true,
+				'data-product'        => true,
+				'data-lang'           => true,
+				'data-theme'          => true,
+				'data-bind-to'        => true,
+				'data-refresh-url'    => true,
+				'data-refresh-action' => true,
+				'data-refresh-scene'  => true,
+			),
+			'input' => array(
+				'type'  => true,
+				'name'  => true,
+				'value' => true,
+			),
+		);
 	}
 
 	/**

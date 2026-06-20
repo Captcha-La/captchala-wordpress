@@ -45,11 +45,15 @@ final class Login extends AbstractIntegration {
 
 	public function login_styles(): void {
 		// Make the captcha block sit nicely inside the wp-login.php form.
-		?>
-		<style id="captchala-login-style">
-		.login form [data-captchala] { margin: 12px 0; }
-		</style>
-		<?php
+		// Registered as an empty-source style so wp_add_inline_style has
+		// a handle to attach to — this is the wordpress.org-approved way
+		// to print a few CSS rules without shipping a separate .css file.
+		$handle = \Captchala\Wp\Plugin::STYLE_HANDLE_LOGIN;
+		if ( ! wp_style_is( $handle, 'registered' ) ) {
+			wp_register_style( $handle, false, array(), CAPTCHALA_WP_VERSION );
+		}
+		wp_enqueue_style( $handle );
+		wp_add_inline_style( $handle, '.login form [data-captchala] { margin: 12px 0; }' );
 	}
 
 	/**

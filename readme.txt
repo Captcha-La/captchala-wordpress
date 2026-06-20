@@ -1,6 +1,6 @@
 === CaptchaLa ===
 Contributors: captchala
-Tags: captcha, captchala, antispam, bot-protection, anti-spam
+Tags: captcha, anti-spam, bot-protection, spam-protection, security
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.0
@@ -30,7 +30,7 @@ Smart privacy-first CAPTCHA for WordPress, WooCommerce, and 14+ form plugins. Ma
 * WooCommerce: classic + block checkout, pay-for-order, account creation, my-account login / register / lost-password
 * Third-party form plugins (auto-detected): Contact Form 7, WPForms, Gravity Forms, Forminator, Formidable Forms, Fluent Forms, Elementor Pro Forms, Divi Builder forms, BuddyPress, bbPress, Ultimate Member, MemberPress, Easy Digital Downloads, MailPoet
 
-More integrations land in v1.1 — see the bundled `INTEGRATIONS.md` for the full target list.
+More integrations land in v1.1. See [https://captcha.la/integrations/wordpress](https://captcha.la/integrations/wordpress) for the full target list.
 
 = AI / Abilities API =
 
@@ -56,7 +56,7 @@ No. The PHP SDK is bundled in the plugin's `vendor/` directory by the build pipe
 
 = Does it work with my form plugin? =
 
-CaptchaLa ships first-class integrations for the 14 most-used form plugins on wordpress.org. See `INTEGRATIONS.md` in the plugin folder for the full list and the v1.1 roadmap.
+CaptchaLa ships first-class integrations for the 14 most-used form plugins on wordpress.org. See [https://captcha.la/integrations/wordpress](https://captcha.la/integrations/wordpress) for the full list and the v1.1 roadmap.
 
 = Does it work with WooCommerce Block Checkout? =
 

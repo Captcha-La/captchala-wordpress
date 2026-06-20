@@ -45,7 +45,14 @@ tar \
     --exclude='./build.sh' \
     --exclude='./SUBMIT.md' \
     --exclude='./INTEGRATIONS.md' \
+    --exclude='./assets' \
     -cf - . | ( cd "${STAGE}/captchala" && tar -xf - )
+
+# wp.org plugin checker bans hidden files anywhere in the plugin tree
+# (.gitignore, .editorconfig, .github/, .DS_Store, …). Strip them from
+# every level — including ones that snuck in via vendor/ — so the
+# submission passes the hidden_files rule.
+find "${STAGE}/captchala" -name '.*' -not -name '.' -not -name '..' -prune -exec rm -rf {} +
 
 ( cd "${STAGE}" && zip -rq "${SCRIPT_DIR}/release/wordpress-${VERSION}.zip" captchala )
 rm -rf "${STAGE}"
