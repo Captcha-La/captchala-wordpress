@@ -411,14 +411,21 @@ final class Plugin {
 		// The captchala_token field is just an extra anti-bot ticket we read
 		// alongside the host form's payload — its own nonce check guards the
 		// request integrity. The pt_ token itself is unguessable + single-use
-		// + IP-bound + action-bound, so a spoofed POST without the nonce can't
-		// pass validation either.
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- host form's own nonce is verified upstream; pt_ token is single-use + IP-bound.
+		// + action-bound, so a spoofed POST without the nonce can't pass
+		// validation either.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- host form's own nonce is verified upstream; pt_ token is single-use + action-bound.
 		$token = isset( $_POST[ self::HIDDEN_INPUT_NAME ] )
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- see above.
 			? sanitize_text_field( wp_unslash( (string) $_POST[ self::HIDDEN_INPUT_NAME ] ) )
 			: '';
-		return $this->client()->validate( $token, false, $this->remote_ip() );
+		// IP is intentionally NOT forwarded to validate(): under Cloudflare /
+		// dual-stack (IPv4+IPv6) the browser often solves the challenge over
+		// one family (browser → cdn) but submits the form over another
+		// (browser → CF → origin), so the IP dash saw at challenge time and
+		// the IP we'd send here are different addresses for the same user —
+		// passing it would fail legit submissions with binding_mismatch.
+		// Single-use pt_ + short TTL + action match still guarantee anti-replay.
+		return $this->client()->validate( $token, false, null );
 	}
 
 	public function error_message( ?string $code ): string {

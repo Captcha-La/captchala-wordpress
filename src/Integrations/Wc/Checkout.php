@@ -167,7 +167,9 @@ JS;
 			}
 		}
 
-		$result  = $this->plugin->client()->validate( $token, false, $this->plugin->remote_ip() );
+		// IP intentionally not forwarded — see Plugin::validate_request() for
+		// the CF / dual-stack binding_mismatch rationale.
+		$result  = $this->plugin->client()->validate( $token, false, null );
 		if ( $result->isValid() ) {
 			return;
 		}
