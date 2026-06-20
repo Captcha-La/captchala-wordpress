@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "captchala/captchala-php",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Captcha-La/captchala-php.git",
-                "reference": "4247a46b82e90eb7a60a07a9bd677631c067e340"
+                "reference": "4a9ae61a1d162ac6f0d0582eff1118a2c712c806"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Captcha-La/captchala-php/zipball/4247a46b82e90eb7a60a07a9bd677631c067e340",
-                "reference": "4247a46b82e90eb7a60a07a9bd677631c067e340",
+                "url": "https://api.github.com/repos/Captcha-La/captchala-php/zipball/4a9ae61a1d162ac6f0d0582eff1118a2c712c806",
+                "reference": "4a9ae61a1d162ac6f0d0582eff1118a2c712c806",
                 "shasum": ""
             },
             "require": {
@@ -53,9 +53,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Captcha-La/captchala-php/issues",
-                "source": "https://github.com/Captcha-La/captchala-php/tree/v1.2.0"
+                "source": "https://github.com/Captcha-La/captchala-php/tree/v1.2.1"
             },
-            "time": "2026-06-20T14:46:04+00:00"
+            "time": "2026-06-20T15:06:09+00:00"
         }
     ],
     "packages-dev": [],
