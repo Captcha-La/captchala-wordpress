@@ -132,11 +132,6 @@ final class Plugin {
 		// Plugin row "Settings" link
 		add_filter( 'plugin_action_links_' . plugin_basename( CAPTCHALA_WP_FILE ), [ $this, 'add_action_links' ] );
 
-		// Abilities API (WP 6.5+)
-		if ( class_exists( Abilities\AbilitiesProvider::class ) ) {
-			( new Abilities\AbilitiesProvider( $this ) )->init();
-		}
-
 		// Skip everything if keys aren't configured.
 		if ( ! $this->is_configured() ) {
 			return;
@@ -392,7 +387,7 @@ final class Plugin {
 		// (with 'strategy' => 'defer') is WP 6.3+; we accept the bool form
 		// fallback for compatibility down to 6.0.
 		if ( ! wp_script_is( self::SCRIPT_HANDLE_LOADER, 'registered' ) ) {
-			wp_register_script( self::SCRIPT_HANDLE_LOADER, $parts['loader_url'], array(), null, true );
+			wp_register_script( self::SCRIPT_HANDLE_LOADER, $parts['loader_url'], array(), CAPTCHALA_WP_VERSION, true );
 		}
 		wp_enqueue_script( self::SCRIPT_HANDLE_LOADER );
 		wp_add_inline_script( self::SCRIPT_HANDLE_LOADER, $parts['inline_script'], 'after' );

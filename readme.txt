@@ -32,10 +32,6 @@ Smart privacy-first CAPTCHA for WordPress, WooCommerce, and 14+ form plugins. Ma
 
 More integrations land in v1.1. See [https://captcha.la/integrations/wordpress](https://captcha.la/integrations/wordpress) for the full target list.
 
-= AI / Abilities API =
-
-CaptchaLa registers a small set of read-only abilities under the WordPress Abilities API (WP 6.5+) so AI agents and automation tools can introspect the plugin's configuration without scraping admin pages.
-
 == Installation ==
 
 1. Upload the `captchala` directory to `/wp-content/plugins/`, or install via the WordPress plugin browser.
@@ -84,7 +80,6 @@ On every page render the plugin issues a one-shot `sct_` token from your Captcha
 * WordPress core: login, register, lost-password, comment.
 * WooCommerce: checkout (classic + block), pay-for-order, account creation, login, register, lost-password.
 * Third-party: Contact Form 7, WPForms, Gravity Forms, Forminator, Formidable, Fluent Forms, Elementor Pro Forms, Divi, BuddyPress, bbPress, Ultimate Member, MemberPress, Easy Digital Downloads, MailPoet.
-* WP 6.5+ Abilities API: read-only `captchala/get-config` and `captchala/get-stats`.
 
 == Upgrade Notice ==
 
