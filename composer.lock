@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a36eb58a8f2098ef0b12a0085abe70c8",
+    "content-hash": "66b182bf58dc62084d21d0fa54315825",
     "packages": [
         {
             "name": "captchala/captchala-php",
-            "version": "1.0.1",
+            "version": "v1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Captcha-La/captchala-php.git",
+                "reference": "dce283f60f54d4ab2fbd9eec53f36c6767323907"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../sdk/php",
-                "reference": "e24b8269a98650b3965a5e5138f3a9e364ef3188"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Captcha-La/captchala-php/zipball/dce283f60f54d4ab2fbd9eec53f36c6767323907",
+                "reference": "dce283f60f54d4ab2fbd9eec53f36c6767323907",
+                "shasum": ""
             },
             "require": {
                 "ext-json": "*",
@@ -27,16 +33,7 @@
                     "Captchala\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Captchala\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -54,10 +51,11 @@
                 "security",
                 "validation"
             ],
-            "transport-options": {
-                "symlink": false,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Captcha-La/captchala-php/issues",
+                "source": "https://github.com/Captcha-La/captchala-php/tree/v1.1.3"
+            },
+            "time": "2026-06-12T22:23:56+00:00"
         }
     ],
     "packages-dev": [],
