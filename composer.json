@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": ">=8.0",
-        "captchala/captchala-php": "^1.0"
+        "captchala/captchala-php": "^1.2"
     },
     "autoload": {
         "psr-4": {

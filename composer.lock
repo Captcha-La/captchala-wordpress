@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66b182bf58dc62084d21d0fa54315825",
+    "content-hash": "3314759722b7df3d5fd5ac383aeb6d44",
     "packages": [
         {
             "name": "captchala/captchala-php",
-            "version": "v1.2.1",
+            "version": "v1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Captcha-La/captchala-php.git",
-                "reference": "4a9ae61a1d162ac6f0d0582eff1118a2c712c806"
+                "reference": "78126c2a141cb6dacd5c691c5f8057135504baac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Captcha-La/captchala-php/zipball/4a9ae61a1d162ac6f0d0582eff1118a2c712c806",
-                "reference": "4a9ae61a1d162ac6f0d0582eff1118a2c712c806",
+                "url": "https://api.github.com/repos/Captcha-La/captchala-php/zipball/78126c2a141cb6dacd5c691c5f8057135504baac",
+                "reference": "78126c2a141cb6dacd5c691c5f8057135504baac",
                 "shasum": ""
             },
             "require": {
@@ -53,9 +53,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Captcha-La/captchala-php/issues",
-                "source": "https://github.com/Captcha-La/captchala-php/tree/v1.2.1"
+                "source": "https://github.com/Captcha-La/captchala-php/tree/v1.2.3"
             },
-            "time": "2026-06-20T15:06:09+00:00"
+            "time": "2026-06-20T16:09:59+00:00"
         }
     ],
     "packages-dev": [],
